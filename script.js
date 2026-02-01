@@ -1,287 +1,170 @@
+/* ==================== SCRIPT.JS ==================== */
 
-// ==================== VARIABLES GLOBALES ====================
-
-const burgerMenu = document.getElementById('burgerMenu');
-const navMenu = document.getElementById('navMenu');
-const backToTopBtn = document.getElementById('backToTop');
-const themeToggle = document.getElementById('themeToggle');
-const navLinks = document.querySelectorAll('.nav-menu a');
-
-// ==================== GESTION DU THÈME (Mode Sombre/Clair) ====================
-
-function initTheme() {
-    const savedTheme = localStorage.getItem('theme-preference');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+document.addEventListener('DOMContentLoaded', () => {
     
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-        document.body.classList.add('dark-mode');
-        themeToggle.setAttribute('aria-pressed', 'true');
-    }
-}
-
-function toggleTheme() {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
-    themeToggle.setAttribute('aria-pressed', isDark);
-    
-    themeToggle.style.transform = 'scale(0.9) rotate(360deg)';
-    setTimeout(() => {
-        themeToggle.style.transform = '';
-    }, 300);
-}
-
-if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-    initTheme();
-}
-
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme-preference')) {
-        document.body.classList.toggle('dark-mode', e.matches);
-    }
-});
-
-// ==================== MENU BURGER (Mobile) ====================
-
-function toggleMenu() {
-    const isExpanded = burgerMenu.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    
-    burgerMenu.setAttribute('aria-expanded', isExpanded);
-    burgerMenu.setAttribute('aria-label', isExpanded ? 'Fermer le menu' : 'Ouvrir le menu');
-    
-    document.body.style.overflow = isExpanded ? 'hidden' : '';
-    
-    if (isExpanded) {
-        navMenu.querySelector('a')?.focus();
-    }
-}
-
-if (burgerMenu) {
-    burgerMenu.addEventListener('click', toggleMenu);
-}
-
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (navMenu.classList.contains('active')) {
-            toggleMenu();
-        }
+    // --- 1. Swiper Initialization (Main Slider) ---
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        speed: 1000,
+        autoplay: {
+            delay: 10000, // 10 seconds as requested
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        effect: 'coverflow', // Optional cool effect
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false, // Cleaner without shadows on transparent
+        },
     });
-});
 
-document.addEventListener('click', (event) => {
-    if (navMenu.classList.contains('active')) {
-        const isClickInsideNav = navMenu.contains(event.target);
-        const isClickOnBurger = burgerMenu.contains(event.target);
+    // --- 2. Nested Swiper (Cactus Gallery) ---
+    const nestedSwiper = new Swiper(".nestedSwiper", {
+        loop: true,
+        nested: true, // Crucial for nested inside another swiper
+        pagination: {
+            el: ".nestedSwiper .swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".nestedSwiper .swiper-button-next",
+            prevEl: ".nestedSwiper .swiper-button-prev",
+        },
+    });
+
+    // --- 3. Typing Animation ---
+    const textToType = ["Concepteur WordPress", "Prototypage UI/UX", "Développeur Front-End"];
+    const typeWriterElement = document.getElementById('typewriter');
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentText = textToType[textIndex];
         
-        if (!isClickInsideNav && !isClickOnBurger) {
-            toggleMenu();
-        }
-    }
-});
-
-// ==================== NAVIGATION AU CLAVIER (RGAA) ====================
-
-document.addEventListener('keydown', (e) => {
-
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        toggleMenu();
-        burgerMenu.focus();
-    }
-    
-    if (e.key === 'Tab' && navMenu.classList.contains('active')) {
-        const focusableElements = navMenu.querySelectorAll('a');
-        const firstElement = focusableElements[0];
-        const lastElement = focusableElements[focusableElements.length - 1];
-        
-        if (e.shiftKey) {
-
-            if (document.activeElement === firstElement) {
-                e.preventDefault();
-                lastElement.focus();
-            }
+        if (isDeleting) {
+            typeWriterElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
         } else {
-
-            if (document.activeElement === lastElement) {
-                e.preventDefault();
-                firstElement.focus();
-            }
+            typeWriterElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
         }
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
+            typeSpeed = 2000; // Pause at end
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex = (textIndex + 1) % textToType.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(typeEffect, typeSpeed);
     }
-});
+    typeEffect();
 
-// ==================== BOUTON RETOUR EN HAUT ====================
+    // --- 4. Mobile Menu Toggle ---
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-function handleBackToTop() {
-    const scrollPosition = window.scrollY;
-    const isVisible = scrollPosition > 300;
-    
-    backToTopBtn.classList.toggle('visible', isVisible);
-    backToTopBtn.setAttribute('aria-hidden', !isVisible);
-}
-
-let scrollTicking = false;
-window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-            handleBackToTop();
-            scrollTicking = false;
+    if(menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+            const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
+            menuBtn.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
         });
-        scrollTicking = true;
     }
-}, { passive: true });
 
-if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        
-        setTimeout(() => {
-            document.querySelector('.skip-link')?.focus();
-        }, 500);
-    });
-}
-
-// ==================== SMOOTH SCROLL AVEC OFFSET ====================
-
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        const targetId = link.getAttribute('href');
-        
-        if (targetId && targetId.startsWith('#')) {
+    // --- 5. Smooth Scroll for Anchor Links ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            const targetSection = document.querySelector(targetId);
-            if (targetSection) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
+            // Close mobile menu if open
+            if(mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            if(targetElement){
+                 targetElement.scrollIntoView({
                     behavior: 'smooth'
                 });
-                
-                targetSection.focus();
-            }
-        }
-    });
-});
-
-// ==================== INTERSECTION OBSERVER (Animations) ====================
-
-if ('IntersectionObserver' in window) {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                // Shift focus to target for accessibility
+                targetElement.setAttribute('tabindex', '-1');
+                targetElement.focus();
             }
         });
-    }, observerOptions);
-    
-    const animatedElements = document.querySelectorAll('.skill-card, .project-card, .timeline-item');
-    animatedElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
     });
-}
 
-// ==================== LAZY LOADING DES IMAGES ====================
+    // --- 6. GDPR Modal Logic (Accessible) ---
+    const modalTrigger = document.getElementById('modal-trigger');
+    const modal = document.getElementById('gdpr-modal');
+    const modalCloseBtn = document.getElementById('modal-close');
+    const modalBackdrop = document.getElementById('modal-backdrop');
 
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    imageObserver.unobserve(img);
+    function openModal() {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        modalCloseBtn.focus(); // Shift focus to close button
+        
+        // Trap Focus
+        modal.addEventListener('keydown', trapFocus);
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+        modalTrigger.focus(); // Return focus to trigger
+        modal.removeEventListener('keydown', trapFocus);
+    }
+
+    function trapFocus(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            return;
+        }
+        
+        const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.key === 'Tab') {
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                }
+            } else { // Tab
+                if (document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
                 }
             }
+        }
+    }
+
+    if(modalTrigger && modal && modalCloseBtn) {
+        modalTrigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            openModal();
         });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-// ==================== AMÉLIORATION DES FOCUS VISIBLES ====================
-
-let isUsingMouse = false;
-
-document.addEventListener('mousedown', () => {
-    isUsingMouse = true;
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Tab') {
-        isUsingMouse = false;
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
     }
-});
-
-document.addEventListener('focusin', (e) => {
-    if (!isUsingMouse) {
-        e.target.classList.add('keyboard-focus');
-    }
-});
-
-document.addEventListener('focusout', (e) => {
-    e.target.classList.remove('keyboard-focus');
-});
-
-// ==================== GESTION DES ERREURS D'IMAGES ====================
-
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', function() {
-        this.style.background = '#f1f5f9';
-        this.style.display = 'flex';
-        this.style.alignItems = 'center';
-        this.style.justifyContent = 'center';
-        this.alt = this.alt || 'Image non disponible';
-        console.warn('Erreur de chargement d\'image:', this.src);
-    });
-});
-
-// ==================== ANALYTICS RESPECT RGPD ====================
-
-function requestAnalyticsConsent() {
-
-    const consent = localStorage.getItem('analytics-consent');
-    
-    if (consent === null) {
-
-        console.log('Consentement analytics requis (RGPD)');
-    } else if (consent === 'accepted') {
-
-        console.log('Analytics autorisés par l\'utilisateur');
-    }
-}
-
-// ==================== DÉTECTION DE CONNEXION INTERNET ====================
-
-window.addEventListener('online', () => {
-    console.log('✅ Connexion Internet rétablie');
-});
-
-window.addEventListener('offline', () => {
-    console.log('⚠️ Connexion Internet perdue');
-});
-
-// ==================== PROTECTION CONTRE LE SPAM ====================
-
-document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-    link.addEventListener('click', function(e) {
-        console.log('📧 Ouverture du client email');
-    });
 });
