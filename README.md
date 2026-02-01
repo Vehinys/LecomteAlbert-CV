@@ -1,6 +1,6 @@
 # Portfolio - Albert Lecomte
 
-Bienvenue sur le dépôt du portfolio personnel d'**Albert Lecomte**. Ce projet est une vitrine interactive présentant mes compétences, mes réalisations et mon parcours en tant que Concepteur WordPress, Designer UI/UX et Développeur Web.
+Bienvenue sur le dépôt de mon CV en ligne. Ce projet est une vitrine interactive présentant mes compétences, mes réalisations et mon parcours en tant que Concepteur WordPress, Designer UI/UX et Développeur Web.
 
 ## 🌟 À propos
 
