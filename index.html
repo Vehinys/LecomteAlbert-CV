@@ -1,586 +1,728 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Albert Lecomte - Concepteur Designer UI, profil hybride Design × Dev. Disponible pour stage CDUI à Mulhouse.">
+    <meta name="description" content="Albert Lecomte - Concepteur WordPress, Prototypage UI/UX & Développeur Web.">
     <meta name="author" content="Albert Lecomte">
-    <meta name="theme-color" content="#0F172A">
+    <title>Albert Lecomte | Concepteur WP & UI/UX</title>
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <title>Albert Lecomte - Concepteur Designer UI | CV EN LIGNE </title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS (CDN for Dev) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'acid-green': '#CCFF00',
+                        'neon-pink': '#FF00FF',
+                        'electric-cyan': '#00FFFF',
+                        'deep-purple': '#7000FF',
+                        'dark-black': '#050505',
+                        'card-bg': 'rgba(255, 255, 255, 0.03)',
+                    },
+                    fontFamily: {
+                        'sans': ['Outfit', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-text': 'linear-gradient(135deg, #CCFF00, #00FFFF, #FF00FF)',
+                    },
+                    animation: {
+                        'gradient-x': 'gradient-x 5s ease infinite',
+                    },
+                    keyframes: {
+                        'gradient-x': {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
+<body class="bg-dark-black text-white antialiased selection:bg-neon-pink selection:text-white">
 
-<body>
-    <header role="banner">
-        <nav role="navigation" aria-label="Navigation principale">
-            <div class="nav-container">
-                <!-- <div class="logo-container">
-                    <img src="IMAGES/MOI.jpg" alt="Photo de profil d'Albert Lecomte" width="56" height="56"> 
-                    <span class="logo-text">Albert Lecomte</span>
-                </div> -->
-                
-                <!-- Menu de navigation -->
-                <ul id="navMenu" class="nav-menu">
-                    <li><a href="#profil">Profil</a></li>
-                    <li><a href="#soft-skills">Compétences</a></li>
-                    <li><a href="#formation">Formation</a></li>
-                    <li><a href="#experience">Expérience</a></li>
-                    <li><a href="#projets">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    <!-- FLUID BACKGROUND -->
+    <div class="background-container">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+        <div class="noise-overlay"></div>
+    </div>
 
-                <div class="nav-actions">
-                    <!-- Bouton mode sombre/clair -->
-                    <button class="theme-toggle" id="themeToggle" aria-label="Basculer entre le mode clair et sombre" aria-pressed="false">
-                        <span class="sun-icon" aria-hidden="true">☀️</span>
-                        <span class="moon-icon" aria-hidden="true">🌙</span>
-                    </button>
+    <!-- NAVIGATION -->
+    <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" aria-label="Retour à l'accueil" class="block w-12 h-12 rounded-full overflow-hidden border-2 border-acid-green shadow-[0_0_10px_#CCFF00] hover:scale-110 transition-transform">
+                <img src="IMAGES/Albert.png" alt="Albert Lecomte" class="w-full h-full object-cover">
+            </a>
 
-                    <!-- Bouton burger pour mobile -->
-                    <button class="burger-menu" id="burgerMenu" aria-label="Ouvrir le menu de navigation" aria-expanded="false" aria-controls="navMenu">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
-            </div>
-        </nav>
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex gap-8 items-center text-sm font-medium text-gray-300">
+                <a href="#profil" class="hover:text-acid-green transition-colors">Profil</a>
+                <a href="#services" class="hover:text-acid-green transition-colors">Services</a>
+                <a href="#portfolio" class="hover:text-acid-green transition-colors">Réalisations</a>
+                <a href="#formation" class="hover:text-acid-green transition-colors">Formation</a>
+                <a href="#experience" class="hover:text-acid-green transition-colors">Expériences</a>
+                <a href="#contact" class="px-6 py-2.5 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-300 font-bold tracking-wide">
+                    Contact
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden text-2xl text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full glass-panel border-b border-white/5 p-6 flex-col gap-4 text-center z-50 bg-black/90">
+            <a href="#profil" class="block py-2 text-gray-300 hover:text-acid-green">Profil</a>
+            <a href="#services" class="block py-2 text-gray-300 hover:text-acid-green">Services</a>
+            <a href="#portfolio" class="block py-2 text-gray-300 hover:text-acid-green">Réalisations</a>
+            <a href="#formation" class="block py-2 text-gray-300 hover:text-acid-green">Formation</a>
+            <a href="#experience" class="block py-2 text-gray-300 hover:text-acid-green">Expériences</a>
+            <a href="#contact" class="inline-block mt-4 px-6 py-2 rounded-full bg-white text-black font-bold">Contact</a>
+        </div>
     </header>
 
-    <main id="main-content" role="main">
-        <!-- ==================== SECTION PROFIL ==================== -->
-        <section class="profil" id="profil" aria-labelledby="profil-title">
-            <div class="container">
-                <!-- En-tête du profil -->
-                <div class="profil-header">
-                    <!-- <div class="profil-photo">
-                        <img src="IMAGES/MOI.jpg" alt="Portrait professionnel d'Albert Lecomte" width="140" height="140">
-                    </div> -->
-                    <div class="profil-info">
-                        <h1 id="profil-title">Albert Lecomte</h1>
-                        <p class="profil-subtitle">Concepteur Designer UI | Profil hybride Design × Dev</p>
-                        <p class="profil-location">
-                            <span aria-hidden="true">📍</span>
-                            <span>Mulhouse, France</span>
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+    
+    <!-- HERO SECTION -->
+    <section id="profil" class="min-h-screen flex items-center justify-center pt-20 relative px-6">
+        <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Text Content -->
+            <div class="order-2 md:order-1 space-y-6">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-acid-green/30 bg-acid-green/10 text-acid-green text-xs font-bold uppercase tracking-wider">
+                    <span class="w-2 h-2 rounded-full bg-acid-green animate-pulse"></span>
+                    Disponible pour un emploi
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-black leading-tight text-white">
+                    Je suis <br>
+                    <span class="bg-gradient-text bg-clip-text text-transparent animate-gradient-x">Albert Lecomte</span>
+                </h1>
+                
+                <div class="text-xl md:text-2xl font-light text-gray-300 h-8 flex items-center">
+                    <span id="typewriter" class="text-white font-medium mr-1"></span>
+                    <span class="w-1 h-6 bg-acid-green cursor-blink"></span>
+                </div>
+
+                <p class="text-gray-300 max-w-lg leading-relaxed">
+                    Spécialisé dans la création de <strong class="text-white">sites WordPress</strong> performants et la conception d' <strong class="text-white">interfaces utilisateur (UI/UX)</strong>. Du wireframe au pixel près.
+                </p>
+
+                <div class="flex flex-wrap gap-4 pt-4">
+                    <a href="#portfolio" class="px-8 py-3 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all duration-300 font-bold">
+                        Voir mes projets
+                    </a>
+                    <a href="#contact" class="px-8 py-3 rounded-full bg-acid-green text-black hover:bg-white hover:shadow-[0_0_20px_rgba(204,255,0,0.6)] transition-all duration-300 font-bold">
+                        Me contacter
+                    </a>
+                </div>
+
+                <!-- Stack Icons (Simple) -->
+                <div class="flex gap-6 pt-8 border-t border-white/10 text-gray-500">
+                    <div class="flex items-center gap-2 hover:text-acid-green transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M12.633 7.653c0-.848-.305-1.635-.812-2.247a5.96 5.96 0 0 0-1.748-1.53V2.13h1.765v-1.28H7.317v1.28h1.61v2.107a6.002 6.002 0 0 0-2.316 1.492 5.95 5.95 0 0 0-.964 1.92h-1.3v1.28h.983c.092.836.354 1.62.748 2.316.592 1.05 1.47 1.886 2.535 2.413l.89-1.296-.65-.453-.888 1.295a4.7 4.7 0 0 1-1.924-1.65 4.65 4.65 0 0 1-.58-1.726h1.666v-1.28h-1.39a4.67 4.67 0 0 1 .65-1.314 4.68 4.68 0 0 1 1.742-1.306V7.63l-1.01.696.697 1.012.986-.68.995.68.697-1.01-1.016-.697v-3.79c.732.174 1.373.57 1.873 1.116.368.4.63.874.764 1.39h-1.32v1.28h1.002z"/></svg>
+                        <span>WordPress</span>
+                    </div>
+                    <div class="flex items-center gap-2 hover:text-neon-pink transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M8.048 1H3.5c-.5 0-.9.4-.9.9v1.5c0 .5.4.9.9.9h.448c.5 0 .9-.4.9-.9V2.4c0-.2.2-.4.4-.4h3.298l-.25.5H8.048zM3.5 13c-.5 0-.9.4-.9.9v1.5c0 .5.4.9.9.9h4.548l.25-.5H8.048v-2.002c0-.2-.2-.4-.9-.9-.2 0-.4-.2-.4-.4V9.602c0-.5-.4-.9-.9-.9H3.5c-.5 0-.9.4-.9.9v1.5c0 .5.4.9.9.9h.448c.5 0 .9-.4.9-.9v-1.5c0-.2.2-.4.4-.4h1.798v1.002c0 .2.2.4.4.4H8.048zm6.5-12c.5 0 .9.4.9.9v1.5c0 .5-.4.9-.9.9h-.448c-.5 0-.9-.4-.9-.9V2.4c0-.2-.2-.4-.4-.4h-1.798v1.002c0 .2-.2.4-.4.4H8.048c-.5 0-.9-.4-.9-.9V1.9c0-.5.4-.9.9-.9h4.548l.25.5H10zM10 13c.5 0 .9.4.9.9v1.5c0 .5-.4.9-.9.9h-4.548l-.25-.5H10v-2.002c0-.2.2-.4.9-.9.2 0 .4-.2.4-.4V9.602c0-.5.4-.9.9-.9h1.798l.25-.5H10z"/></svg> 
+                        <span>Adobe XD</span>
+                    </div>
+                    <div class="flex items-center gap-2 hover:text-acid-green transition-colors">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16"><path d="M12.633 7.653c0-.848-.305-1.635-.812-2.247a5.96 5.96 0 0 0-1.748-1.53V2.13h1.765v-1.28H7.317v1.28h1.61v2.107a6.002 6.002 0 0 0-2.316 1.492 5.95 5.95 0 0 0-.964 1.92h-1.3v1.28h.983c.092.836.354 1.62.748 2.316.592 1.05 1.47 1.886 2.535 2.413l.89-1.296-.65-.453-.888 1.295a4.7 4.7 0 0 1-1.924-1.65 4.65 4.65 0 0 1-.58-1.726h1.666v-1.28h-1.39a4.67 4.67 0 0 1 .65-1.314 4.68 4.68 0 0 1 1.742-1.306V7.63l-1.01.696.697 1.012.986-.68.995.68.697-1.01-1.016-.697v-3.79c.732.174 1.373.57 1.873 1.116.368.4.63.874.764 1.39h-1.32v1.28h1.002z"/></svg>
+                        <span>Figma</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image/Visual -->
+            <div class="order-1 md:order-2 flex justify-center relative">
+                <div class="relative w-64 h-64 md:w-96 md:h-96">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-acid-green to-neon-pink blur-2xl opacity-30 animate-pulse"></div>
+                    <img src="IMAGES/Albert.png" alt="Albert" class="relative w-full h-full object-cover rounded-full border-2 border-white/10 shadow-2xl" onerror="this.src='https://ui-avatars.com/api/?name=Albert+Lecomte&background=111&color=fff&size=512'">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 right-10 glass-panel px-4 py-2 rounded-xl flex items-center gap-3 animate-bounce shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                        <div class="text-2xl">🚀</div>
+                        <div>
+                            <div class="text-xs text-gray-300">Expérience</div>
+                            <div class="text-sm font-bold text-white">Junior Passionné</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="py-6 border-y border-white/5 bg-black/40 overflow-hidden">
+        <div class="flex justify-center gap-12 md:gap-24 grayscale hover:grayscale-0 transition-all duration-500 font-bold text-xl tracking-widest text-white/80">
+            <span>WORDPRESS</span>
+            <span>FIGMA</span>
+            <span>ADOBE XD</span>
+            <span>SYMFONY</span>
+            <span>PHP</span>
+            <span>TAILWIND</span>
+
+        </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section id="services" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Mes Expertises</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-acid-green/10 rounded-2xl flex items-center justify-center text-acid-green text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        🖌️
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">UI/UX & Prototypage</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Conception d'interfaces modernes et ergonomiques. Wireframing sur <strong>Figma</strong> et <strong>Adobe XD</strong> pour valider l'expérience utilisateur avant le code.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group border-acid-green/30 shadow-[0_0_30px_rgba(204,255,0,0.05)]">
+                    <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-white text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        🚀
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Création Site WordPress</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Installation, configuration et personnalisation de thèmes. Création de sites vitrines et e-commerce faciles à administrer.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="w-14 h-14 bg-neon-pink/10 rounded-2xl flex items-center justify-center text-neon-pink text-3xl mb-6 group-hover:scale-110 transition-transform">
+                        💻
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">DEV Front-End & PHP</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        Intégration responsive (HTML/CSS/Tailwind). Développement de fonctionnalités spécifiques en JavaScript et PHP (Symfony).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO / REALISATIONS -->
+    <section id="portfolio" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Mes Projets</span></h2>
+            
+            <!-- SWIPER MAIN CONTAINER -->
+            <div class="swiper mySwiper w-full relative pb-12">
+                <div class="swiper-wrapper">
+                    
+                    <!-- SLIDE 1: HALLOWEEN -->
+                    <div class="swiper-slide p-4">
+                        <div class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group">
+                            <!-- Image -->
+                            <div class="relative h-64 md:h-96 overflow-hidden">
+                                <img src="IMAGES/halloween.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Halloween Project" onerror="this.src='https://placehold.co/800x500/000000/CCFF00?text=Halloween+Project'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent md:bg-gradient-to-r"></div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-8 md:p-12 flex flex-col justify-center">
+                                <div class="mb-4">
+                                    <span class="px-3 py-1 rounded-full border border-white/20 text-xs font-bold text-white uppercase tracking-wider">CSS3 Animation</span>
+                                </div>
+                                <h3 class="text-3xl font-black text-white mb-4 bg-gradient-text bg-clip-text text-transparent">Halloween Spooky</h3>
+                                <p class="text-gray-300 mb-6">
+                                    Challenge d'intégration thématique. Utilisation avancée des <strong>keyframes CSS</strong> et du positionnement absolu pour créer une ambiance immersive sans JavaScript.
+                                </p>
+                                <a href="https://github.com/Vehinys/HTML-CSS-HALLOWEEN" target="_blank" class="inline-flex items-center gap-2 text-acid-green font-bold hover:text-white transition-colors">
+                                    Voir le Repo <span class="text-xl">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 3: THIS PORTFOLIO -->
+                    <div class="swiper-slide p-4">
+                        <div class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group">
+                            <!-- Image -->
+                            <div class="relative h-64 md:h-96 overflow-hidden">
+                                <img src="IMAGES/Albert.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0" alt="Ce Portfolio">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent md:bg-gradient-to-r"></div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-8 md:p-12 flex flex-col justify-center">
+                                <div class="mb-4">
+                                    <span class="px-3 py-1 rounded-full border border-white/20 text-xs font-bold text-white uppercase tracking-wider">Projet Actuel</span>
+                                </div>
+                                <h3 class="text-3xl font-black text-white mb-4 bg-gradient-text bg-clip-text text-transparent">Mon Portfolio Interactif</h3>
+                                <p class="text-gray-300 mb-6">
+                                    Conception intégrale de ce site en <strong>Tailwind CSS</strong>. Design System "Cyber-Holographique" personnalisé, animations fluides et optimisation complète UX/UI.
+                                </p>
+                                <a href="#" class="inline-flex items-center gap-2 text-acid-green font-bold hover:text-white transition-colors">
+                                    En ligne <span class="text-xl">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SLIDE 2: CACTUS (NESTED SLIDER) -->
+                    <div class="swiper-slide p-4">
+                        <div class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group">
+                            <!-- Nested Swiper Container -->
+                            <div class="relative h-64 md:h-96 bg-black/50">
+                                <div class="swiper nestedSwiper w-full h-full">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide"><img src="IMAGES/cactus.png" class="w-full h-full object-cover" alt="Cactus 1"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-2.png" class="w-full h-full object-cover" alt="Cactus 2"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-3.png" class="w-full h-full object-cover" alt="Cactus 3"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-4.png" class="w-full h-full object-cover" alt="Cactus 4"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-5.png" class="w-full h-full object-cover" alt="Cactus 5"></div>
+                                    </div>
+                                    <!-- Nested Navigation -->
+                                    <div class="swiper-button-next !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"></div>
+                                    <div class="swiper-button-prev !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-8 md:p-12 flex flex-col justify-center">
+                                <div class="mb-4">
+                                    <span class="px-3 py-1 rounded-full border border-white/20 text-xs font-bold text-white uppercase tracking-wider">CSS Art</span>
+                                </div>
+                                <h3 class="text-3xl font-black text-white mb-4 bg-gradient-text bg-clip-text text-transparent">Neon Cactus</h3>
+                                <p class="text-gray-300 mb-6">
+                                    Expérimentation graphique "CSS Art". Dessiner avec du code : utilisation des pseudo-éléments <code>::before</code> et <code>::after</code> pour créer des formes complexes.
+                                </p>
+                                <a href="https://github.com/Vehinys/JS-HTML-CSS-CACTUS" target="_blank" class="inline-flex items-center gap-2 text-acid-green font-bold hover:text-white transition-colors">
+                                    Voir le Repo <span class="text-xl">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Main Navigation -->
+                <div class="swiper-pagination !bottom-0"></div>
+                <div class="swiper-button-next !text-white !hidden md:!flex"></div>
+                <div class="swiper-button-prev !text-white !hidden md:!flex"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FORMATION TIMELINE -->
+    <!-- PARCOURS / FORMATION -->
+    <section id="formation" class="py-24 px-6 relative bg-black/20">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Parcours & Formation</span></h2>
+            
+            <div class="space-y-12 relative before:content-[''] before:absolute before:left-4 md:before:left-1/2 before:top-0 before:h-full before:w-px before:bg-white/10">
+                
+                <!-- GRETA 2025-2026 -->
+                <div class="relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-12 md:pl-0">
+                        <span class="inline-block px-3 py-1 bg-acid-green text-black font-bold rounded-lg text-sm mb-2 shadow-[0_0_10px_#CCFF00]">En cours (2025-2026)</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-acid-green transition-colors">Concepteur Designer UI (Niveau 6)</h4>
+                        <p class="text-gray-300 font-medium">GRETA Alsace Sud</p>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-1.5 md:left-1/2 md:-ml-2.5 w-5 h-5 rounded-full bg-acid-green border-4 border-black z-10 shadow-[0_0_15px_#CCFF00] group-hover:scale-125 transition-transform"></div>
+                    
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12">
+                        <p class="text-gray-400 text-sm leading-relaxed mb-2"><strong>Niveau : En cours</strong></p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Conception pour WordPress & UI/UX Design. Maîtrise de la Suite Adobe (Photoshop, Illustrator, XD). Intégration avancée HTML5 / CSS3 / Animations et développement PHP avec le Framework Symfony.
                         </p>
                     </div>
                 </div>
 
-                <!-- OBJECTIF DE STAGE -->
-                <div class="stage-banner" role="region" aria-labelledby="stage-title">
-                    <h2 id="stage-title" class="stage-title">
-                        <span aria-hidden="true">🎯</span> Recherche de Stage GRETA - Concepteur Designer UI
-                    </h2>
-                    <div class="stage-grid">
-                        <div class="stage-card">
-                            <span class="stage-icon" aria-hidden="true">📅</span>
-                            <div>
-                                <h3>Période</h3>
-                                <p>Du 23 février au 17 avril 2026<br><small>(avec interruption semaine 13)</small></p>
-                            </div>
-                        </div>
-                        <div class="stage-card">
-                            <span class="stage-icon" aria-hidden="true">⏱️</span>
-                            <div>
-                                <h3>Durée</h3>
-                                <p>6 semaines<br>238 heures</p>
-                            </div>
-                        </div>
-                        <div class="stage-card">
-                            <span class="stage-icon" aria-hidden="true">📋</span>
-                            <div>
-                                <h3>Type</h3>
-                                <p>Stage conventionné<br>Formation CDUI</p>
-                            </div>
-                        </div>
+                <!-- ELAN 2024 -->
+                <div class="relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-12 md:pl-0">
+                        <p class="text-gray-400 text-sm leading-relaxed mb-2"><strong>Niveau : Obtention du diplôme</strong></p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Installation et configuration d'environnements web/mobile. Maquettage (Figma) et réalisation d'interfaces statiques. Développement dynamique (JS, PHP), gestion de BDD (SQL/NoSQL) et développement Backend sécurisé (Symfony, API, Doctrine). Gestion de projet Agile, GitHub, Sécurité Web & RGPD.
+                        </p>
                     </div>
-                    <div class="stage-description">
-                        <p><strong>Objectif :</strong> Contribuer à des projets UI/UX et communication digitale au sein d'une équipe expérimentée. Mettre en pratique mes compétences en design d'interfaces, tout en découvrant les méthodologies de travail en agence/entreprise.</p>
+                    <!-- Dot -->
+                    <div class="absolute left-1.5 md:left-1/2 md:-ml-2.5 w-5 h-5 rounded-full bg-electric-cyan border-4 border-black z-10 group-hover:scale-125 transition-transform"></div>
+                    
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12">
+                        <span class="inline-block px-3 py-1 bg-electric-cyan/20 text-electric-cyan border border-electric-cyan/50 font-bold rounded-lg text-sm mb-2">2024</span>
+                        <h4 class="text-xl font-bold text-white group-hover:text-electric-cyan transition-colors">Développeur Web & Mobile (Niveau 5)</h4>
+                        <p class="text-gray-300 font-medium">Elan Formation</p>
                     </div>
                 </div>
 
-                <!-- À propos -->
-                <div class="about-section">
-                    <h2>À propos de moi</h2>
-                    
-                    <div class="about-highlight">
-                        <p>Designer UI passionné par la création d'interfaces intuitives et accessibles, je transforme les besoins utilisateurs en expériences digitales engageantes.</p>
+                <!-- GRETA 2022-2023 -->
+                <div class="relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-12 md:pl-0">
+                        <span class="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg text-sm mb-2">2022 - 2023</span>
+                        <h4 class="text-xl font-bold text-white">Infographiste Metteur en Page (Niveau 4)</h4>
+                        <p class="text-gray-300 font-medium">GRETA Sud Alsace</p>
                     </div>
+                    <!-- Dot -->
+                    <div class="absolute left-1.5 md:left-1/2 md:-ml-2.5 w-5 h-5 rounded-full bg-white border-4 border-black z-10 group-hover:scale-125 transition-transform"></div>
                     
-                    <div class="about-content">
-                        <div class="about-card">
-                            <h3>Mon approche</h3>
-                            <p>Profil hybride design × développement, j'allie créativité visuelle et rigueur technique pour concevoir des interfaces à la fois esthétiques et performantes. Ma double compétence me permet de collaborer efficacement avec les équipes pluridisciplinaires et d'anticiper les contraintes d'intégration.</p>
-                        </div>
-                        
-                        <div class="about-card">
-                            <h3>Ce qui me caractérise</h3>
-                            <p>Curieux et force de proposition, j'aborde chaque projet avec un esprit analytique et une volonté d'apprendre en continu. Mon parcours en communication et développement web m'a appris l'importance de l'écoute active et de l'adaptabilité face aux enjeux clients.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="about-value">
-                        <p><strong>💡 Ma valeur ajoutée :</strong> Capacité à intervenir sur toute la chaîne de création (maquettage Figma, intégration HTML/CSS, gestion WordPress) pour un dialogue optimal entre design et développement.</p>
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12">
+                        <p class="text-gray-400 text-sm leading-relaxed mb-2"><strong>Niveau : Diplôme Acquis</strong></p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Élaboration de propositions graphiques et analyse des besoins client. Mise en page de documents simples et élaborés (InDesign), retouche photo (Photoshop) et création vectorielle (Illustrator). Contribution à la stratégie de communication visuelle.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Boutons d'action -->
-                <div class="cta-section">
-                    <a href="#contact" class="btn btn-primary">
-                        <span aria-hidden="true">📧</span> Me contacter
-                    </a>
-                    <a href="#projets" class="btn btn-secondary">
-                        <span aria-hidden="true">🎨</span> Voir mon portfolio
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION SOFT SKILLS ==================== -->
-        <section class="soft-skills" id="soft-skills" aria-labelledby="skills-title">
-            <div class="container">
-                <h2 id="skills-title">Compétences Comportementales</h2>
-                <p class="section-subtitle">Les soft skills qui font la différence</p>
-                
-                <div class="skills-grid">
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🎨</span>
-                        <h3>Créativité & Innovation</h3>
-                        <p>Proposer des solutions visuelles originales tout en respectant les contraintes du brief.</p>
-                    </article>
-                    
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🤝</span>
-                        <h3>Collaboration</h3>
-                        <p>Travail en synergie avec développeurs, chefs de projet et clients.</p>
-                    </article>
-                    
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🔄</span>
-                        <h3>Adaptabilité</h3>
-                        <p>Flexibilité face aux changements et capacité à jongler entre missions variées.</p>
-                    </article>
-                    
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🎯</span>
-                        <h3>Rigueur</h3>
-                        <p>Attention méticuleuse aux détails et aux normes d'accessibilité web.</p>
-                    </article>
-                    
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🚀</span>
-                        <h3>Autonomie</h3>
-                        <p>Capacité à mener des projets de A à Z avec peu de supervision.</p>
-                    </article>
-                    
-                    <article class="skill-card">
-                        <span class="skill-icon" aria-hidden="true">🔍</span>
-                        <h3>Curiosité</h3>
-                        <p>Apprentissage continu des nouvelles tendances UI/UX et méthodologies.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION FORMATION ==================== -->
-        <section class="formation" id="formation" aria-labelledby="formation-title">
-            <div class="container">
-                <h2 id="formation-title">Formation</h2>
-                
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <span class="timeline-badge badge-current" aria-label="Formation en cours">En cours</span>
-                        <div class="timeline-content">
-                            <h3>Titre Professionnel Concepteur Designer UI – Niveau 6 (Bac +3)</h3>
-                            <p class="timeline-meta">
-                                <strong>GRETA ALSACE SUD</strong> · Octobre 2025 – Juin 2026 · Mulhouse
-                            </p>
-                            <p>Formation certifiante en conception d'interfaces utilisateur et expérience digitale : de la recherche utilisateur au développement d'interfaces web optimisées.</p>
-                            <ul class="achievements-list">
-                                <li><strong>Design graphique & interfaces :</strong> Conception d'éléments graphiques pour interfaces et supports de communication avec la suite Adobe (Photoshop, Illustrator, InDesign)</li>
-                                <li><strong>UX/UI Design :</strong> Analyse de l'expérience utilisateur, création de wireframes et prototypes interactifs, design thinking et recherche utilisateur</li>
-                                <li><strong>Développement web :</strong> Intégration d'interfaces en HTML5, CSS3 et JavaScript, développement responsive et accessible</li>
-                                <li><strong>CMS & Sites web :</strong> Création, amélioration et animation de sites complets avec WordPress et autres systèmes de gestion de contenu</li>
-                                <li><strong>Gestion de projet digital :</strong> Pilotage et suivi de projets web, méthodologies Agile/Scrum, respect des délais et budgets</li>
-                                <li><strong>Web marketing :</strong> Conception d'interfaces conformes aux stratégies marketing et aux objectifs clients, optimisation des conversions</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Figma</span>
-                                <span class="tag">Adobe XD</span>
-                                <span class="tag">Photoshop/Illustrator/InDesign</span>
-                                <span class="tag">HTML/CSS/JavaScript</span>
-                                <span class="tag">WordPress</span>
-                                <span class="tag">UX Research</span>
-                                <span class="tag">Agile/Scrum</span>
-                                <span class="tag">Web Marketing</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <span class="timeline-badge badge-completed" aria-label="Formation terminée">Diplômé</span>
-                        <div class="timeline-content">
-                            <h3>Titre Professionnel Développeur Web et Web Mobile – Niveau 5 (Bac +2)</h3>
-                            <p class="timeline-meta">
-                                <strong>ELAN FORMATION</strong> · Mai 2024 – Novembre 2024 · Mulhouse
-                            </p>
-                            <p>Formation certifiante axée sur le développement full-stack : conception d'interfaces utilisateur modernes et développement backend sécurisé.</p>
-                            <ul class="achievements-list">
-                                <li><strong>Développement Frontend :</strong> Maquettage et réalisation d'interfaces utilisateur web et mobile responsive, création de composants dynamiques interactifs</li>
-                                <li><strong>Développement Backend :</strong> Conception et mise en place de bases de données relationnelles (SQL) et NoSQL, développement de composants métier côté serveur</li>
-                                <li><strong>Sécurité :</strong> Développement d'applications web sécurisées avec gestion des authentifications et des données sensibles</li>
-                                <li><strong>DevOps :</strong> Configuration d'environnements de développement, documentation et déploiement d'applications web dynamiques</li>
-                                <li><strong>Gestion de projet :</strong> Méthodologies agiles, versioning Git, et travail collaboratif</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">HTML/CSS/JavaScript</span>
-                                <span class="tag">PHP/Symfony</span>
-                                <span class="tag">SQL/NoSQL</span>
-                                <span class="tag">React</span>
-                                <span class="tag">Git</span>
-                                <span class="tag">API REST</span>
-                            </div>
-                        </div>
-                    </article>
-                    </article>
-
-                    <article class="timeline-item">
-                        <span class="timeline-badge badge-completed" aria-label="Formation terminée">Diplômé</span>
-                        <div class="timeline-content">
-                            <h3>Titre Professionnel Infographe Metteur en Page – Niveau 4 (Bac)</h3>
-                            <p class="timeline-meta">
-                                <strong>GRETA ALSACE SUD</strong> · Octobre 2022 – Mars 2023 · Mulhouse
-                            </p>
-                            <p>Formation certifiante en infographie, PAO et communication visuelle : de la conception graphique à la production de supports print et digital.</p>
-                            <ul class="achievements-list">
-                                <li><strong>Conception graphique :</strong> Analyse des besoins clients, élaboration de propositions graphiques et planification de projets de communication</li>
-                                <li><strong>Production PAO :</strong> Mise en page de documents simples et élaborés (affiches, flyers, magazines, brochures), contrôle qualité et livraison</li>
-                                <li><strong>Communication digitale :</strong> Personnalisation de CMS (WordPress), adaptation de contenus pour le web et les réseaux sociaux</li>
-                                <li><strong>UX/UI Design :</strong> Création de maquettes et mockups avec Figma, application de la théorie des couleurs et des principes d'expérience utilisateur</li>
-                                <li><strong>Veille stratégique :</strong> Suivi des tendances graphiques, techniques et concurrentielles</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Adobe Photoshop</span>
-                                <span class="tag">Adobe Illustrator</span>
-                                <span class="tag">Adobe InDesign</span>
-                                <span class="tag">Figma</span>
-                                <span class="tag">WordPress</span>
-                                <span class="tag">HTML/CSS</span>
-                                <span class="tag">UX Design</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <span class="timeline-badge badge-completed" aria-label="Formation terminée">Complété</span>
-                        <div class="timeline-content">
-                            <h3>Découverte des Métiers du Numérique – Web & Design</h3>
-                            <p class="timeline-meta">
-                                <strong>ELAN FORMATION</strong> · Novembre 2021 – Avril 2022 · Mulhouse
-                            </p>
-                            <p>Formation préparatoire aux métiers du web : initiation au développement front-end/back-end et à la création graphique digitale.</p>
-                            <ul class="achievements-list">
-                                <li><strong>Développement web :</strong> Initiation au développement de sites dynamiques avec HTML5, CSS3, JavaScript et PHP</li>
-                                <li><strong>Design graphique :</strong> Création de visuels et contenus graphiques avec Adobe Photoshop et Illustrator</li>
-                                <li><strong>UX/UI Design :</strong> Conception de maquettes et prototypes interactifs avec Figma</li>
-                                <li><strong>WordPress :</strong> Création et personnalisation de sites avec intégration de fonctionnalités sur mesure</li>
-                                <li><strong>Projet réalisé :</strong> Développement d'un site e-commerce de vente de thé sur WordPress avec optimisation SEO et design attractif</li>
-                                <li><strong>Gestion de projet :</strong> Méthodologies agiles, GitHub, Trello, diagrammes de Gantt, respect du RGPD</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">HTML/CSS/JavaScript</span>
-                                <span class="tag">PHP/POO</span>
-                                <span class="tag">WordPress</span>
-                                <span class="tag">Figma</span>
-                                <span class="tag">Adobe Suite</span>
-                                <span class="tag">GitHub</span>
-                                <span class="tag">SEO</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION EXPÉRIENCE ==================== -->
-        <section class="experience" id="experience" aria-labelledby="experience-title">
-            <div class="container">
-                <h2 id="experience-title">Expériences Professionnelles</h2>
-                
-                <div class="timeline">
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Vendeur Polyvalent : Caissier / Vendeur / Magasinier</h3>
-                            <p class="timeline-meta">
-                                <strong>BLACKSTORE FRANCE</strong> · CDI · Avril 2023 – Avril 2024 · 1 an 1 mois · Kingersheim
-                            </p>
-                            <p>Gestion complète du point de vente : de l'ouverture/fermeture du magasin à l'accompagnement client, en passant par la logistique et le merchandising.</p>
-                            <ul class="achievements-list">
-                                <li>Responsabilité des ouvertures et fermetures du magasin (préparation, sécurisation, comptage de caisse)</li>
-                                <li>Gestion complète des opérations en caisse : encaissement, transactions, moyens de paiement et suivi quotidien</li>
-                                <li>Accueil, conseil personnalisé et accompagnement des clients tout au long de leur parcours d'achat</li>
-                                <li>Gestion de la chaîne logistique : réception des colis, étiquetage, organisation en réserve, réapprovisionnement et inventaires</li>
-                                <li>Traitement des retours clients et envoi des produits défectueux aux fournisseurs</li>
-                                <li>Merchandising : implantation et mise en valeur des produits selon les directives visuelles</li>
-                                <li>Résolution des litiges clients pour garantir une expérience d'achat satisfaisante</li>
-                                <li>Mise en place et suivi de la communication interne et digitale du magasin</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Gestion de caisse</span>
-                                <span class="tag">Service client</span>
-                                <span class="tag">Merchandising</span>
-                                <span class="tag">Gestion des stocks</span>
-                                <span class="tag">Résolution de litiges</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Stagiaire Graphisme & Communication Digitale</h3>
-                            <p class="timeline-meta">
-                                <strong>MULHOUSE GAMING</strong> · Stage · Février 2023 – Mars 2023 · 2 mois · Mulhouse
-                            </p>
-                            <p>Création de supports visuels print et digitaux pour promouvoir les événements gaming et renforcer la présence sur les réseaux sociaux.</p>
-                            <ul class="achievements-list">
-                                <li>Conception graphique de supports print : affiches, flyers, kakémonos et banderoles pour événements gaming et tournois esport</li>
-                                <li>Création de contenus visuels pour réseaux sociaux : posts Instagram, Facebook, stories, bannières et visuels promotionnels</li>
-                                <li>Contribution à l'identité visuelle : création de templates graphiques réutilisables et cohérence de la charte graphique</li>
-                                <li>Design de visuels pour événements : annonces de tournois, classements, résultats et animations communautaires</li>
-                                <li>Retouche photo et montage graphique : traitement d'images événementielles et création de visuels attractifs</li>
-                                <li>Adaptation des formats pour différents supports : impression grand format, web et réseaux sociaux</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Adobe Photoshop</span>
-                                <span class="tag">Adobe Illustrator</span>
-                                <span class="tag">Adobe InDesign</span>
-                                <span class="tag">Communication digitale</span>
-                                <span class="tag">Print</span>
-                                <span class="tag">Réseaux sociaux</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Stagiaire Développement Web</h3>
-                            <p class="timeline-meta">
-                                <strong>E-NAUMAD</strong> · Stage · Avril 2022 – Mai 2022 · 2 mois · Mulhouse
-                            </p>
-                            <p>Participation au développement de sites web dynamiques sur wordpress et création de supports visuels pour des projets clients.</p>
-                            <ul class="achievements-list">
-                                <li>Développement de sites web dynamiques en HTML5, CSS3 et PHP</li>
-                                <li>Création et personnalisation de sites WordPress avec intégration de fonctionnalités sur mesure</li>
-                                <li>Conception de maquettes et prototypes interactifs avec Figma</li>
-                                <li>Création de visuels et contenus graphiques avec Photoshop et Illustrator</li>
-                                <li>Développement d'interfaces utilisateurs modernes et responsive</li>
-                                <li>Collaboration en équipe sur des projets web variés</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">HTML/CSS</span>
-                                <span class="tag">PHP</span>
-                                <span class="tag">WordPress</span>
-                                <span class="tag">Figma</span>
-                                <span class="tag">Adobe Suite</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="timeline-item">
-                        <div class="timeline-content">
-                            <h3>Vendeur Polyvalent</h3>
-                            <p class="timeline-meta">
-                                <strong>IKEA MULHOUSE</strong> · CDI · Avril 2015 – Août 2021 · 6 ans 5 mois
-                            </p>
-                            <p>Gestion complète du parcours client et de la logistique magasin dans un environnement dynamique et exigeant.</p>
-                            <ul class="achievements-list">
-                                <li>Accueil et conseil personnalisé des clients pour les accompagner dans leurs choix d'achat</li>
-                                <li>Gestion complète des stocks : réception, étiquetage, organisation en réserve et réapprovisionnement des rayons</li>
-                                <li>Merchandising : implantation et mise en valeur des produits selon les directives visuelles</li>
-                                <li>Montage et présentation des nouveaux produits pour optimiser leur visibilité en magasin</li>
-                                <li>Conduite de chariots élévateurs (CACES C1, C5) avec autorisation interne</li>
-                                <li>Réalisation d'inventaires réguliers et gestion des retours produits</li>
-                                <li>Collaboration en équipe pour assurer l'atteinte des objectifs de vente et l'excellence opérationnelle</li>
-                            </ul>
-                            <div class="tags">
-                                <span class="tag">Service client</span>
-                                <span class="tag">Merchandising</span>
-                                <span class="tag">Gestion des stocks</span>
-                                <span class="tag">CACES</span>
-                                <span class="tag">Travail d'équipe</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION PROJETS ==================== -->
-        <section class="projets" id="projets" aria-labelledby="projets-title">
-            <div class="container">
-                <h2 id="projets-title">Projets Réalisés</h2>
-                <p class="section-subtitle">Une sélection de mes réalisations</p>
-
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="#" alt="Aperçu du site e-commerce" loading="lazy">
-                            <span class="project-badge">En cours</span>
-                        </div>
-                        <div class="project-content">
-                            <h3> Site E-commerce</h3>
-                            <p>Boutique en ligne.</p>
-                            <div class="tags">
-                                <span class="tag">WordPress</span>
-                                <span class="tag">WooCommerce</span>
-                                <span class="tag">SEO</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="IMAGES/ETIQUETTE - LA DELICIEUSE.png" alt="Étiquette produit La Délicieuse" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>La Délicieuse – Identité Visuelle</h3>
-                            <p>Création d'une étiquette de produit alimentaire conforme à la réglementation.</p>
-                            <div class="tags">
-                                <span class="tag">Illustrator</span>
-                                <span class="tag">Branding</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="IMAGES/Capture site cv.png" alt="Aperçu du CV interactif en ligne" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>CV Interactif en Ligne</h3>
-                            <p>CV web moderne, responsive et accessible avec animations CSS.</p>
-                            <div class="tags">
-                                <span class="tag">HTML5</span>
-                                <span class="tag">CSS3</span>
-                                <span class="tag">JavaScript</span>
-                            </div>
-                            <a href="https://github.com/Vehinys/Curriculum-vitae-Web" class="project-link" target="_blank" rel="noopener noreferrer">Voir sur GitHub</a>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                            <img src="IMAGES/maquette-ui-1.png" alt="Prototype application mobile Cup of Thé" loading="lazy">
-                        </div>
-                        <div class="project-content">
-                            <h3>Cup of Thé – App Mobile</h3>
-                            <p>Prototype d'application de découverte et commande de thés avec Figma.</p>
-                            <div class="tags">
-                                <span class="tag">Figma</span>
-                                <span class="tag">Prototypage</span>
-                                <span class="tag">UX</span>
-                            </div>
-                            <a href="https://www.figma.com/proto/EuMxE64Ak0yyEOhYrIyV92/Untitled?node-id=42-326" class="project-link" target="_blank" rel="noopener noreferrer">Voir sur Figma</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION CONTACT ==================== -->
-        <section class="contact" id="contact" aria-labelledby="contact-title">
-            <div class="container">
-                <h2 id="contact-title">Me Contacter</h2>
-                <p class="section-subtitle">N'hésitez pas à me contacter pour toute opportunité ou question</p>
-                
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <span class="contact-icon" aria-hidden="true">📧</span>
-                        <h3>Email</h3>
-                        <a href="mailto:albert.lecomte1989@gmail.com">albert.lecomte1989@gmail.com</a>
+                 <!-- ELAN 2021-2022 -->
+                <div class="relative flex flex-col md:flex-row gap-8 md:gap-0 items-start md:items-center group">
+                    <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 pl-12 md:pl-0">
+                        <p class="text-gray-400 text-sm leading-relaxed mb-2"><strong>Niveau : Non diplômant</strong></p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Initiation au développement de sites dynamiques (HTML/CSS/JS/PHP). Création de visuels (Photoshop/Illustrator) et maquettes (Figma). Projet notable : Site de vente de thé (SEO & Design). Collaboration d'équipe et méthodes de travail.
+                        </p>
                     </div>
+                    <!-- Dot -->
+                    <div class="absolute left-1.5 md:left-1/2 md:-ml-2.5 w-5 h-5 rounded-full bg-white/50 border-4 border-black z-10 group-hover:scale-125 transition-transform"></div>
                     
-                    <div class="contact-card">
-                        <span class="contact-icon" aria-hidden="true">📱</span>
-                        <h3>Téléphone</h3>
-                        <a href="tel:+33664249900">+33 6 02 64 24 99</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <span class="contact-icon" aria-hidden="true">💼</span>
-                        <h3>LinkedIn</h3>
-                        <a href="https://linkedin.com/in/lecomtealbert" target="_blank" rel="noopener noreferrer">lecomtealbert</a>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <span class="contact-icon" aria-hidden="true">💻</span>
-                        <h3>GitHub</h3>
-                        <a href="https://github.com/Vehinys" target="_blank" rel="noopener noreferrer">Vehinys</a>
+                    <div class="md:w-1/2 md:pl-12 order-3 pl-12">
+                        <span class="inline-block px-3 py-1 bg-white/10 text-white font-bold rounded-lg text-sm mb-2">2021 - 2022</span>
+                        <h4 class="text-xl font-bold text-white">Découverte Métiers du Numérique</h4>
+                        <p class="text-gray-300 font-medium">Elan Formation</p>
                     </div>
                 </div>
 
-                <div class="availability-card">
-                    <h3>Disponibilité</h3>
-                    <p><strong>Statut :</strong> En formation CDUI (GRETA Alsace Sud)</p>
-                    <p><strong>Recherche :</strong> Stage conventionné gratuit et obligatoire</p>
-                    <p><strong>Télétravail :</strong> Présentiel privilégié · Hybride possible</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h2 class="footer-title">Albert Lecomte</h2>
-                    <p>Concepteur Designer UI<br>Mulhouse, France</p>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Navigation</h3>
-                    <ul>
-                        <li><a href="#profil">Profil</a></li>
-                        <li><a href="#soft-skills">Compétences</a></li>
-                        <li><a href="#formation">Formation</a></li>
-                        <li><a href="#experience">Expérience</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Réseaux</h3>
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/lecomtealbert" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn d'Albert Lecomte">
-                            <span aria-hidden="true">in</span>
-                        </a>
-                        <a href="https://github.com/Vehinys" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub d'Albert Lecomte">
-                            <span aria-hidden="true">{ }</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2025 Albert Lecomte. Tous droits réservés.</p>
-                <p class="footer-legal">
-                    <small>
-                        Les données personnelles présentes sur ce site sont fournies volontairement. 
-                        Aucun cookie de suivi n'est utilisé. Conformité RGPD.
-                    </small>
-                </p>
             </div>
         </div>
+    </section>
+
+    <!-- EXPERIENCE PRO (NEW SECTION) -->
+    <section id="experience" class="py-24 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Expériences Professionnelles</span></h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- BLACKSTORE -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-neon-pink transition-colors">Vendeur Polyvalent</h3>
+                            <p class="text-acid-green font-medium">BLACKSTORE France (CDI)</p>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white">2023 - 2024</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Accueil et conseil client personnalisé. Gestion complète de la caisse et des transactions. Gestion des stocks, inventaires et merchandising. Responsabilité des ouvertures et fermetures du magasin.
+                    </p>
+                </div>
+
+                <!-- E-NAUMAD (Stage) -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/5 transition-colors group border-neon-pink/20">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-neon-pink transition-colors">Stagiaire DEV Web</h3>
+                            <p class="text-acid-green font-medium">E-NAUMAD</p>
+                        </div>
+                        <span class="text-xs font-bold bg-neon-pink/20 text-neon-pink px-3 py-1 rounded-full border border-neon-pink/50">2022</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        DEV de sites dynamiques (HTML5, CSS3, PHP). Personnalisation avancée de sites WordPress. Création de visuels et maquettes (Photoshop, Figma). Travail d'équipe sur des interfaces modernes.
+                    </p>
+                </div>
+
+                <!-- IKEA -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-neon-pink transition-colors">Vendeur Polyvalent</h3>
+                            <p class="text-acid-green font-medium">IKEA (CDI)</p>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white">2015 - 2021</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        6 ans d'expérience en relation client, gestion de stock, merchandising et logistique (CACES). Développement de soft-skills solides : travail d'équipe, rigueur, gestion du stress.
+                    </p>
+                </div>
+                
+                 <!-- CAISSIER (Grouped) -->
+                <div class="glass-panel p-8 rounded-3xl hover:bg-white/5 transition-colors group">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-neon-pink transition-colors">Missions Intérim</h3>
+                            <p class="text-acid-green font-medium">Brico Dépôt / Castorama</p>
+                        </div>
+                        <span class="text-xs font-bold bg-white/10 px-3 py-1 rounded-full text-white">2024</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Missions ponctuelles de caissier: gestion des encaissements, accueil client, rigueur et efficacité.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEVOLAT & PASSIONS (NEW SECTION) -->
+    <section id="benevolat" class="py-24 px-6 relative bg-gradient-to-b from-black to-deep-purple/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Bénévolat & Passions</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Asso 1: Voyageurs du rêve -->
+                <div class="bg-black/40 p-8 rounded-3xl border border-white/5 hover:border-acid-green/50 transition-all group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🎭</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Les Voyageurs du Rêve</h3>
+                    <p class="text-xs text-acid-green mb-4 font-bold uppercase">Membre Actif (Depuis 2024)</p>
+                    <p class="text-gray-400 text-sm">
+                        Animation de stands en conventions (Grand Est). Organisation d'événements culturels. Esprit d'équipe et communication.
+                    </p>
+                </div>
+
+                <!-- Asso 2: Mulhouse Gaming -->
+                <div class="bg-black/40 p-8 rounded-3xl border border-white/5 hover:border-electric-cyan/50 transition-all group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🎮</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Mulhouse Gaming</h3>
+                    <p class="text-xs text-electric-cyan mb-4 font-bold uppercase">Secrétaire (2022-2023)</p>
+                    <p class="text-gray-400 text-sm">
+                        Organisation de tournois Esport en ligne et IRL. Gestion administrative de l'association.
+                    </p>
+                </div>
+
+                <!-- Asso 3: Judo Optimal -->
+                <div class="bg-black/40 p-8 rounded-3xl border border-white/5 hover:border-neon-pink/50 transition-all group">
+                    <div class="text-4xl mb-4 group-hover:scale-110 transition-transform inline-block">🥋</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Judo Optimal</h3>
+                    <p class="text-xs text-neon-pink mb-4 font-bold uppercase">Président / Enseignant (5 ans)</p>
+                    <p class="text-gray-400 text-sm">
+                        Gestion complète d'une asso sportive. Enseignement du Judo tous niveaux. Organisation de compétitions régionales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Passions Detail Area -->
+            <div class="mt-24">
+                <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Passions & Hobbies</span></h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    
+                    <!-- Passion 1: Photographie -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl group-hover:bg-acid-green group-hover:text-black transition-colors">
+                                📸
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Photographie Amateur</h4>
+                                <span class="text-xs text-acid-green uppercase font-bold">Paysage & Portrait</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Capturer l'instant et sublimer le réel. Une pratique qui aiguise mon sens du détail, de la lumière et de la composition, que ce soit face à des vastes paysages ou lors de portraits intimistes.
+                        </p>
+                    </div>
+
+                    <!-- Passion 2: JDR -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl group-hover:bg-deep-purple group-hover:text-white transition-colors">
+                                🎲
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Jeux de Rôle (JDR)</h4>
+                                <span class="text-xs text-deep-purple uppercase font-bold">DnD 5, Warhammer, Star Wars...</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Plus qu'un jeu, une aventure collective. Joueur sur <strong>Pendragon</strong> ou <strong>D&D</strong>, j'y développe créativité, improvisation et cohésion d'équipe nécessaire pour surmonter les défis narratifs.
+                        </p>
+                    </div>
+
+                    <!-- Passion 3: Gaming -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl group-hover:bg-electric-cyan group-hover:text-black transition-colors">
+                                🎮
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Gaming & MMO</h4>
+                                <span class="text-xs text-electric-cyan uppercase font-bold">WoW, Ark, Hogwarts Legacy, Tomb Raider...</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Passionné par l'exploration et les énigmes. De la saga <strong>Tomb Raider</strong> aux mondes persistants comme <strong>WoW</strong> ou <strong>Ark</strong>, le jeu vidéo cultive ma persévérance et ma logique de résolution de problèmes.
+                        </p>
+                    </div>
+
+                    <!-- Passion 4: Anime -->
+                    <div class="glass-panel p-8 rounded-3xl hover:-translate-y-2 transition-transform duration-300 group">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl group-hover:bg-neon-pink group-hover:text-white transition-colors">
+                                ⛩️
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Culture Animé & Manga</h4>
+                                <span class="text-xs text-neon-pink uppercase font-bold">Fan d'Isekai & Solo Leveling</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Une source d'inspiration visuelle inépuisable. Grand amateur du genre <strong>Isekai</strong> et marqué par l'esthétique et la progression du héros dans <strong>Solo Leveling</strong>, qui résonne avec ma volonté d'amélioration continue.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 relative">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Me Contacter</span></h2>
+            
+            <div class="glass-panel p-8 md:p-12 rounded-3xl">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2">Une idée ? Un projet ?</h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Je suis actuellement disponible pour des missions freelance ou un poste en CDI. N'hésitez pas à me laisser un message.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                </div>
+                                <span class="text-gray-200">Paris, France (et Télétravail)</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
+                                    <i class="bi bi-envelope-fill"></i>
+                                </div>
+                                <a href="mailto:contact@albertlecomte.com" class="text-gray-200 hover:text-white transition-colors">contact@albertlecomte.com</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
+                                    <i class="bi bi-linkedin"></i>
+                                </div>
+                                <a href="#" class="text-gray-200 hover:text-white transition-colors">linkedin.com/in/albertlecomte</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <form class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-bold text-white mb-2">Nom</label>
+                            <input type="text" id="name" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Votre nom">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-bold text-white mb-2">Email</label>
+                            <input type="email" id="email" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="votre@email.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-bold text-white mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Bonjour..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-acid-green to-electric-cyan text-black font-black uppercase tracking-wider hover:opacity-90 transition-opacity">
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/5 bg-black/80 text-center">
+        <p class="text-gray-400 font-medium mb-4">&copy; 2026 Albert Lecomte. Tous droits réservés.</p>
+        <div class="flex justify-center gap-6">
+            <a href="#" class="text-gray-400 hover:text-white text-2xl transition-colors" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white text-2xl transition-colors" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white text-2xl transition-colors" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+        <p class="mt-8">
+            <button id="modal-trigger" class="text-xs text-gray-500 hover:text-gray-300 underline transition-colors">Mentions Légales & RGPD</button>
+        </p>
     </footer>
 
-    <!-- Bouton retour en haut -->
-    <button class="back-to-top" id="backToTop" aria-label="Retour en haut de la page">
-        <span aria-hidden="true">↑</span>
-    </button>
+    <!-- GDPR MODAL -->
+    <div id="gdpr-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="fixed inset-0 z-[60] hidden flex items-center justify-center px-4">
+        <!-- Backdrop -->
+        <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-[#0a0a0a] border border-white/10 rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl p-8 z-10">
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-6">Mentions Légales & Confidentialité</h2>
+            
+            <div class="space-y-6 text-gray-300 text-sm leading-relaxed">
+                <div>
+                    <h3 class="text-acid-green font-bold mb-2 uppercase text-xs tracking-wider">Éditeur du site</h3>
+                    <p>Ce site est édité par Albert Lecomte, résidant à Paris, France.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-acid-green font-bold mb-2 uppercase text-xs tracking-wider">Hébergement</h3>
+                    <p>Ce site est hébergé par GitHub Pages.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-acid-green font-bold mb-2 uppercase text-xs tracking-wider">Cookies & RGPD</h3>
+                    <p>
+                        <strong>Confidentialité stricte & Zéro Cookie.</strong><br>
+                        Ce site n'utilise aucun cookie, ni traceur, ni outil d'analyse (pas de Google Analytics, pas de pixel Facebook).<br>
+                        Les seules données collectées sont celles que vous m'envoyez explicitement par e-mail ou via le formulaire de contact, dans l'unique but de vous répondre.<br>
+                        Conformément au RGPD, vous conservez un contrôle total sur vos échanges privés.
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-acid-green font-bold mb-2 uppercase text-xs tracking-wider">Accessibilité</h3>
+                    <p>
+                        Ce site s'efforce de respecter les critères WCAG 2.1 niveau AA pour garantir l'accessibilité aux personnes en situation de handicap (contrastes élevés, navigation clavier, lecteurs d'écran).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Scripts JavaScript -->
+    <!-- Bootstrap Icons for easy icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>
