@@ -36,28 +36,6 @@ Ce projet est réalisé en **HTML5**, **CSS3** et **JavaScript** natif (Vanilla)
   - [Bootstrap Icons](https://icons.getbootstrap.com/) - Pour l'iconographie.
   - [Tailwind CSS](https://tailwindcss.com/) (CDN) - Framework CSS utilitaire.
 
-## 📦 Installation et Utilisation
-
-Puisque ce projet utilise des liens CDN pour ses dépendances (Tailwind, Swiper), aucune installation complexe (npm, build, etc.) n'est strictement nécessaire pour le visualiser.
-
-### Méthode simple
-
-1.  **Cloner le dépôt :**
-    ```bash
-    git clone https://github.com/VOTRE_USERNAME/NOM_DU_REPO.git
-    ```
-2.  **Ouvrir le fichier :**
-    Double-cliquez simplement sur le fichier `index.html` pour l'ouvrir dans votre navigateur web par défaut.
-
-### Méthode recommandée (Serveur Local)
-
-Pour une meilleure expérience (notamment pour le chargement des ressources et éviter les problèmes de CORS éventuels), il est conseillé d'utiliser un petit serveur local.
-
-Si vous utilisez **VS Code** :
-
-1.  Installez l'extension **Live Server**.
-2.  Faites un clic droit sur `index.html` -> "Open with Live Server".
-
 ## 📁 Structure du Projet
 
 ```
@@ -73,11 +51,7 @@ Si vous utilisez **VS Code** :
 
 **Albert Lecomte**
 
-- **Portfolio :** [Lien vers le site en ligne si disponible]
-- **Email :** contact@albertlecomte.com
-- **LinkedIn :** [Votre Lien LinkedIn]
-
 ## 📄 Licence
 
-Ce projet est destiné à un usage personnel dans le cadre de mon portfolio professionnel. Tous droits réservés.
+Ce projet est destiné à un usage personnel dans le cadre de mon CV en ligne professionnel. Tous droits réservés.
 Copyright © 2026 Albert Lecomte.
