@@ -11,6 +11,21 @@
     <link rel="stylesheet" href="style.css">
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Force override for Swiper Pagination */
+        .swiper-pagination-bullet {
+            background-color: white !important;
+            opacity: 0.5 !important;
+            width: 10px !important;
+            height: 10px !important;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #CCFF00 !important; /* Acid Green */
+            opacity: 1 !important;
+            width: 12px !important;
+            height: 12px !important;
+        }
+    </style>
     
     <!-- Tailwind CSS (CDN for Dev) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -294,11 +309,11 @@
                             <div class="relative h-64 md:h-96 bg-black/50">
                                 <div class="swiper nestedSwiper w-full h-full">
                                     <div class="swiper-wrapper">
-                                        <div class="swiper-slide"><img src="IMAGES/cactus.png" class="w-full h-full object-cover" alt="Cactus 1"></div>
-                                        <div class="swiper-slide"><img src="IMAGES/cactus-2.png" class="w-full h-full object-cover" alt="Cactus 2"></div>
-                                        <div class="swiper-slide"><img src="IMAGES/cactus-3.png" class="w-full h-full object-cover" alt="Cactus 3"></div>
-                                        <div class="swiper-slide"><img src="IMAGES/cactus-4.png" class="w-full h-full object-cover" alt="Cactus 4"></div>
-                                        <div class="swiper-slide"><img src="IMAGES/cactus-5.png" class="w-full h-full object-cover" alt="Cactus 5"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus.png" class="w-full h-full object-contain" alt="Cactus 1"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-2.png" class="w-full h-full object-contain" alt="Cactus 2"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-3.png" class="w-full h-full object-contain" alt="Cactus 3"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-4.png" class="w-full h-full object-contain" alt="Cactus 4"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/cactus-5.png" class="w-full h-full object-contain" alt="Cactus 5"></div>
                                     </div>
                                     <!-- Nested Navigation -->
                                     <div class="swiper-button-next !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"></div>
@@ -322,11 +337,55 @@
                         </div>
                     </div>
 
+                    <!-- SLIDE 4: KUCRA AGENCY -->
+                    <div class="swiper-slide p-4">
+                        <div class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group">
+                            <!-- Nested Swiper Container (Gallery) -->
+                            <div class="relative h-64 md:h-96 bg-black/90">
+                                <div class="swiper nestedSwiper w-full h-full">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-hero.png" class="w-full h-full object-contain" alt="Kucra Hero Section"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-parallax.png" class="w-full h-full object-contain" alt="Kucra Parallax Effect"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-pricing.png" class="w-full h-full object-contain" alt="Kucra Pricing Table"></div>
+                                        <!-- Responsive Views -->
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-mobile-hero.png?v=1" class="w-full h-full object-contain" alt="Kucra Mobile Hero"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-mobile-features.png?v=1" class="w-full h-full object-contain" alt="Kucra Mobile Features"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-mobile-blog.png?v=1" class="w-full h-full object-contain" alt="Kucra Mobile Blog"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-mobile-menu.png?v=1" class="w-full h-full object-contain" alt="Kucra Mobile Menu"></div>
+                                        <div class="swiper-slide"><img src="IMAGES/kucra-mobile-footer.png?v=1" class="w-full h-full object-contain" alt="Kucra Mobile Footer"></div>
+                                    </div>
+                                    <!-- Nested Navigation -->
+                                    <div class="swiper-button-next !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"></div>
+                                    <div class="swiper-button-prev !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"></div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="p-8 md:p-12 flex flex-col justify-center">
+                                <div class="mb-4">
+                                    <span class="px-3 py-1 rounded-full border border-white/20 text-xs font-bold text-white uppercase tracking-wider">HTML/CSS Natif</span>
+                                </div>
+                                <h3 class="text-3xl font-black text-white mb-4 bg-gradient-text bg-clip-text text-transparent">Kucra Agency</h3>
+                                <p class="text-gray-300 mb-6">
+                                    Site "One Page" complet. Intégration avancée sans framework : <strong>Menu Burger JS</strong> manuel, Tableaux de prix Flexbox et <strong class="text-acid-green">effet Parallax</strong> en pur CSS sur les sections de transition.
+                                </p>
+                                <a href="https://github.com/Vehinys/HTML-CSS-JS-LANDINGPAGE" target="_blank" class="inline-flex items-center gap-2 text-acid-green font-bold hover:text-white transition-colors">
+                                    Voir le Repo <span class="text-xl">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- Main Navigation -->
-                <div class="swiper-pagination !bottom-0"></div>
-                <div class="swiper-button-next !text-white !hidden md:!flex"></div>
-                <div class="swiper-button-prev !text-white !hidden md:!flex"></div>
+                <!-- Main Navigation -->
+                <div class="swiper-pagination-main absolute bottom-0 w-full flex justify-center pb-4 z-10"></div>
+                <div class="swiper-button-next-main !text-white !flex absolute top-1/2 right-0 md:-right-12 z-10 w-12 h-12 items-center justify-center cursor-pointer bg-black/50 md:bg-transparent rounded-full border border-white/10 md:border-0 backdrop-blur-sm md:backdrop-blur-none hover:scale-110 transition-transform">
+                     <i class="bi bi-arrow-right text-2xl md:text-3xl"></i>
+                </div>
+                <div class="swiper-button-prev-main !text-white !flex absolute top-1/2 left-0 md:-left-12 z-10 w-12 h-12 items-center justify-center cursor-pointer bg-black/50 md:bg-transparent rounded-full border border-white/10 md:border-0 backdrop-blur-sm md:backdrop-blur-none hover:scale-110 transition-transform">
+                     <i class="bi bi-arrow-left text-2xl md:text-3xl"></i>
+                </div>
             </div>
 
         </div>

@@ -11,12 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
             disableOnInteraction: false,
         },
         pagination: {
-            el: ".swiper-pagination",
+            el: ".swiper-pagination-main",
             clickable: true,
         },
         navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next-main",
+            prevEl: ".swiper-button-prev-main",
         },
         effect: 'coverflow', // Optional cool effect
         coverflowEffect: {
@@ -28,18 +28,21 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
-    // --- 2. Nested Swiper (Cactus Gallery) ---
-    const nestedSwiper = new Swiper(".nestedSwiper", {
-        loop: true,
-        nested: true, // Crucial for nested inside another swiper
-        pagination: {
-            el: ".nestedSwiper .swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".nestedSwiper .swiper-button-next",
-            prevEl: ".nestedSwiper .swiper-button-prev",
-        },
+    // --- 2. Nested Swipers (Galleries) ---
+    const nestedSwipers = document.querySelectorAll('.nestedSwiper');
+    nestedSwipers.forEach(swiperElement => {
+        new Swiper(swiperElement, {
+            loop: true,
+            nested: true, // Crucial for nested inside another swiper
+            pagination: {
+                el: swiperElement.querySelector(".swiper-pagination"),
+                clickable: true,
+            },
+            navigation: {
+                nextEl: swiperElement.querySelector(".swiper-button-next"),
+                prevEl: swiperElement.querySelector(".swiper-button-prev"),
+            },
+        });
     });
 
     // --- 3. Typing Animation ---
