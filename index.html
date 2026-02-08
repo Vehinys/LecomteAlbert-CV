@@ -676,36 +676,42 @@
                                 <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
                                     <i class="bi bi-geo-alt-fill"></i>
                                 </div>
-                                <span class="text-gray-200">Paris, France (et Télétravail)</span>
+                                <span class="text-gray-200">Mulhouse, France (et Télétravail)</span>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
                                     <i class="bi bi-envelope-fill"></i>
                                 </div>
-                                <a href="mailto:contact@albertlecomte.com" class="text-gray-200 hover:text-white transition-colors">contact@albertlecomte.com</a>
+                                <a href="mailto:albert.lecomte1989@gmail.com" class="text-gray-200 hover:text-white transition-colors">albert.lecomte1989@gmail.com</a>
                             </div>
                             <div class="flex items-center gap-4">
                                 <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-acid-green">
                                     <i class="bi bi-linkedin"></i>
                                 </div>
-                                <a href="#" class="text-gray-200 hover:text-white transition-colors">linkedin.com/in/albertlecomte</a>
+                                <a href="https://www.linkedin.com/in/lecomtealbert/" class="text-gray-200 hover:text-white transition-colors">linkedin.com/in/albertlecomte</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Contact Form -->
-                    <form class="space-y-4">
+                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+                        <!-- Honeypot for spam protection -->
+                        <input type="text" name="_gotcha" style="display:none">
+                        
+                        <!-- Subject field -->
+                        <input type="hidden" name="_subject" value="Nouveau message de votre Portfolio">
+
                         <div>
                             <label for="name" class="block text-sm font-bold text-white mb-2">Nom</label>
-                            <input type="text" id="name" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Votre nom">
+                            <input type="text" id="name" name="name" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Votre nom">
                         </div>
                         <div>
                             <label for="email" class="block text-sm font-bold text-white mb-2">Email</label>
-                            <input type="email" id="email" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="votre@email.com">
+                            <input type="email" id="email" name="email" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="votre@email.com">
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-bold text-white mb-2">Message</label>
-                            <textarea id="message" rows="4" class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Bonjour..."></textarea>
+                            <textarea id="message" name="message" rows="4" required class="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-acid-green focus:ring-1 focus:ring-acid-green transition-all" placeholder="Bonjour..."></textarea>
                         </div>
                         <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-acid-green to-electric-cyan text-black font-black uppercase tracking-wider hover:opacity-90 transition-opacity">
                             Envoyer
