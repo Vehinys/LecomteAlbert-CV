@@ -85,6 +85,14 @@
       <div class="noise-overlay"></div>
     </div>
 
+    <!-- SKIP LINK FOR ACCESSIBILITY -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-6 focus:py-3 focus:bg-acid-green focus:text-black focus:font-bold focus:rounded-full"
+    >
+      Aller au contenu principal
+    </a>
+
     <!-- NAVIGATION -->
     <header class="fixed top-0 w-full z-50 glass-panel border-b border-white/5">
       <div
@@ -133,7 +141,7 @@
         <!-- Mobile Menu Button -->
         <button
           id="mobile-menu-btn"
-          aria-label="Ouvrir le menu"
+          aria-label="Ouvrir le menu de navigation"
           aria-expanded="false"
           aria-controls="mobile-menu"
           class="md:hidden text-2xl text-white focus:outline-none"
@@ -202,14 +210,22 @@
         <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
           <!-- Text Content -->
           <div class="order-2 md:order-1 space-y-6">
-            <!-- Badge -->
-            <div
-              class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-acid-green/30 bg-acid-green/10 text-acid-green text-xs font-bold uppercase tracking-wider"
-            >
-              <span
-                class="w-2 h-2 rounded-full bg-acid-green animate-pulse"
-              ></span>
-              Disponible pour un emploi
+            <!-- Badges -->
+            <div class="flex flex-wrap gap-3">
+              <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-acid-green/30 bg-acid-green/10 text-acid-green text-xs font-bold uppercase tracking-wider"
+              >
+                <span
+                  class="w-2 h-2 rounded-full bg-acid-green animate-pulse"
+                ></span>
+                Disponible pour un emploi
+              </div>
+              <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neon-pink/30 bg-neon-pink/10 text-neon-pink text-xs font-bold uppercase tracking-wider"
+              >
+                <span class="text-sm">♿</span>
+                Reconnu RQTH
+              </div>
             </div>
 
             <h1
@@ -320,11 +336,27 @@
         </div>
       </section>
 
-      <!-- BANDEROLE -->
-      <div class="py-6 border-y border-white/5 bg-black/40 overflow-hidden">
+      <!-- BANDEROLE (Infinite Marquee) -->
+      <div
+        class="py-6 border-y border-white/5 bg-black/40 overflow-hidden relative"
+      >
         <div
-          class="flex justify-center gap-12 md:gap-24 grayscale hover:grayscale-0 transition-all duration-500 font-bold text-xl tracking-widest text-white/80"
+          class="flex animate-marquee gap-12 md:gap-24 grayscale hover:grayscale-0 transition-all duration-700 font-bold text-xl tracking-widest text-white/80"
         >
+          <!-- Loop content -->
+          <span>WORDPRESS</span>
+          <span>FIGMA</span>
+          <span>ADOBE XD</span>
+          <span>SYMFONY</span>
+          <span>PHP</span>
+          <span>TAILWIND</span>
+          <!-- Duplicate for seamless scroll -->
+          <span>WORDPRESS</span>
+          <span>FIGMA</span>
+          <span>ADOBE XD</span>
+          <span>SYMFONY</span>
+          <span>PHP</span>
+          <span>TAILWIND</span>
           <span>WORDPRESS</span>
           <span>FIGMA</span>
           <span>ADOBE XD</span>
@@ -338,9 +370,9 @@
       <section id="services" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+            class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest"
           >
-            <span class="border-b-4 border-acid-green pb-2"
+            <span class="border-b-2 md:border-b-4 border-acid-green pb-2"
               >Mes Expertises</span
             >
           </h2>
@@ -407,7 +439,9 @@
       <!-- PORTFOLIO / REALISATIONS -->
       <section id="portfolio" class="py-24 px-6 relative">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"><span class="border-b-4 border-acid-green pb-2">Mes Projets</span></h2>
+            <h2 class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest">
+              <span class="border-b-2 md:border-b-4 border-acid-green pb-2">Mes Projets</span>
+            </h2>
             
             <!-- SWIPER MAIN CONTAINER -->
             <div class="swiper mySwiper w-full relative pb-12">
@@ -419,7 +453,7 @@
                             <!-- Image -->
                             <div class="relative h-64 md:h-96 overflow-hidden">
                                 <img src="IMAGES/halloween.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Halloween Project" onerror="this.src='https://placehold.co/800x500/000000/CCFF00?text=Halloween+Project'">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent md:bg-gradient-to-r"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r"></div>
                             </div>
                             <!-- Content -->
                             <div class="p-8 md:p-12 flex flex-col justify-center">
@@ -446,11 +480,11 @@
                   <div class="relative h-64 md:h-96 overflow-hidden">
                     <img
                       src="IMAGES/Albert.png"
-                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale group-hover:grayscale-0"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 md:grayscale md:group-hover:grayscale-0"
                       alt="Ce Portfolio"
                     />
                     <div
-                      class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent md:bg-gradient-to-r"
+                      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:bg-gradient-to-r"
                     ></div>
                   </div>
                   <!-- Content -->
@@ -550,10 +584,12 @@
                     >
                       Neon Cactus
                     </h3>
-                    <p class="text-gray-300 mb-6">
-                      Expérimentation graphique "CSS Art". Dessiner avec du code
-                      : utilisation des pseudo-éléments <code>::before</code> et
-                      <code>::after</code> pour créer des formes complexes.
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                      Projet créatif d'intégration CSS. Utilisation intensive de
+                      <code class="bg-white/5 px-1.5 py-0.5 rounded text-neon-pink border border-neon-pink/20">box-shadow</code>, 
+                      <code class="bg-white/5 px-1.5 py-0.5 rounded text-electric-cyan border border-electric-cyan/20">text-shadow</code> et de 
+                      <strong class="text-white font-bold">keyframes</strong> personnalisées pour
+                      simuler un éclairage néon scintillant et immersif.
                     </p>
                     <a
                       href="https://github.com/Vehinys/JS-HTML-CSS-CACTUS"
@@ -572,7 +608,7 @@
                   class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group"
                 >
                   <!-- Nested Swiper Container (Gallery) -->
-                  <div class="relative h-64 md:h-96 bg-black/90">
+                  <div class="relative h-64 md:h-96 bg-black/70">
                     <div class="swiper nestedSwiper w-full h-full">
                       <div class="swiper-wrapper">
                         <div class="swiper-slide">
@@ -656,11 +692,11 @@
                     >
                       Kucra Agency
                     </h3>
-                    <p class="text-gray-300 mb-6">
+                    <p class="text-gray-300 mb-6 leading-relaxed">
                       Site "One Page" complet. Intégration avancée sans
-                      framework : <strong>Menu Burger JS</strong> manuel,
-                      Tableaux de prix Flexbox et
-                      <strong class="text-acid-green">effet Parallax</strong> en
+                      framework : <span class="text-white font-bold">Menu Burger JS</span> manuel,
+                      Tableaux de prix Flexbox et 
+                      <strong class="text-acid-green border-b border-acid-green/30">effet Parallax</strong> en
                       pur CSS sur les sections de transition.
                     </p>
                     <a
@@ -670,6 +706,64 @@
                     >
                       Voir le Repo <span class="text-xl">→</span>
                     </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SLIDE 5: PHOTOSHOP MOCKUPS -->
+              <div class="swiper-slide p-4">
+                <div
+                  class="glass-panel rounded-3xl overflow-hidden grid md:grid-cols-2 group"
+                >
+                  <!-- Gallery -->
+                  <div class="relative h-64 md:h-96 bg-black/70">
+                    <div class="swiper nestedSwiper w-full h-full">
+                      <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                          <img
+                            src="IMAGES/capture photoshop - maquette 1.png"
+                            class="w-full h-full object-contain"
+                            alt="Maquette 1"
+                          />
+                        </div>
+                        <div class="swiper-slide">
+                          <img
+                            src="IMAGES/capture photoshop - maquette 2.png"
+                            class="w-full h-full object-contain"
+                            alt="Maquette 2"
+                          />
+                        </div>
+                      </div>
+                      <!-- Navigation -->
+                      <div
+                        class="swiper-button-next !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"
+                        aria-label="Image suivante"
+                      ></div>
+                      <div
+                        class="swiper-button-prev !text-acid-green !w-8 !h-8 after:!text-lg bg-black/50 rounded-full"
+                        aria-label="Image précédente"
+                      ></div>
+                      <div class="swiper-pagination"></div>
+                    </div>
+                  </div>
+                  <!-- Content -->
+                  <div class="p-8 md:p-12 flex flex-col justify-center">
+                    <div class="mb-4">
+                      <span
+                        class="px-3 py-1 rounded-full border border-white/20 text-xs font-bold text-white uppercase tracking-wider"
+                        >UI Design / Photoshop</span
+                      >
+                    </div>
+                    <h3
+                      class="text-3xl font-black text-white mb-4 bg-gradient-text bg-clip-text text-transparent"
+                    >
+                      Maquettes Photoshop
+                    </h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                      Conception d'interfaces graphiques d'une application web et retouches
+                      avancées. Travail sur la hiérarchie visuelle et l'identité de marque.
+                    </p>
+                    <span class="text-acid-green font-bold">Projet de Formation</span>
                   </div>
                 </div>
               </div>
@@ -698,15 +792,15 @@
       <section id="formation" class="py-24 px-6 relative bg-black/20">
         <div class="max-w-5xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+            class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest"
           >
-            <span class="border-b-4 border-acid-green pb-2"
+            <span class="border-b-2 md:border-b-4 border-acid-green pb-2"
               >Parcours & Formation</span
             >
           </h2>
 
           <div
-            class="space-y-12 relative before:content-[''] before:absolute before:left-4 md:before:left-1/2 before:top-0 before:h-full before:w-px before:bg-white/10"
+            class="space-y-12 relative before:content-[''] before:absolute before:left-[15px] md:before:left-1/2 before:top-0 before:h-full before:w-px before:bg-white/10"
           >
             <!-- GRETA 2025-2026 -->
             <div
@@ -857,9 +951,9 @@
       <section id="experience" class="py-24 px-6 relative">
         <div class="max-w-6xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+            class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest px-4"
           >
-            <span class="border-b-4 border-acid-green pb-2"
+            <span class="border-b-2 md:border-b-4 border-acid-green pb-2"
               >Expériences Professionnelles</span
             >
           </h2>
@@ -981,9 +1075,9 @@
       >
         <div class="max-w-7xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+            class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest"
           >
-            <span class="border-b-4 border-acid-green pb-2"
+            <span class="border-b-2 md:border-b-4 border-acid-green pb-2"
               >Bénévolat & Passions</span
             >
           </h2>
@@ -1052,9 +1146,9 @@
           <!-- Passions Detail Area -->
           <div class="mt-24">
             <h2
-              class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+              class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-wider md:tracking-widest"
             >
-              <span class="border-b-4 border-acid-green pb-2"
+              <span class="border-b-2 md:border-b-4 border-acid-green pb-2"
                 >Passions & Hobbies</span
               >
             </h2>
@@ -1175,7 +1269,7 @@
       <section id="contact" class="py-24 px-6 relative">
         <div class="max-w-4xl mx-auto">
           <h2
-            class="text-4xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
+            class="text-xl md:text-5xl font-black text-center mb-16 text-white uppercase tracking-widest"
           >
             <span class="border-b-4 border-acid-green pb-2">Me Contacter</span>
           </h2>
@@ -1296,6 +1390,22 @@
                     placeholder="Bonjour..."
                   ></textarea>
                 </div>
+
+                <!-- Consent Checkbox RGPD -->
+                <div class="flex items-start gap-3 py-2">
+                  <input
+                    type="checkbox"
+                    id="rgpd-consent"
+                    name="rgpd_consent"
+                    required
+                    class="mt-1 w-4 h-4 bg-black/50 border border-white/10 rounded accent-acid-green"
+                  />
+                  <label for="rgpd-consent" class="text-sm text-gray-400">
+                    J'accepte que mes données personnelles soient traitées pour
+                    répondre à ma demande de contact.
+                  </label>
+                </div>
+
                 <button
                   type="submit"
                   id="submit-btn"
