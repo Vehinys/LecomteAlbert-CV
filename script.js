@@ -170,4 +170,68 @@ document.addEventListener('DOMContentLoaded', () => {
         modalCloseBtn.addEventListener('click', closeModal);
         modalBackdrop.addEventListener('click', closeModal);
     }
+
+    // --- 7. Contact Form AJAX Submission ---
+    const contactForm = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    if (contactForm && submitBtn) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Store original button content
+            const originalBtnContent = submitBtn.innerHTML;
+            
+            // Set loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Envoi en cours...</span>
+            `;
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success state
+                    submitBtn.classList.remove('from-acid-green', 'to-electric-cyan');
+                    submitBtn.classList.add('bg-green-500');
+                    submitBtn.innerHTML = `<span>Envoyé ! ✓</span>`;
+                    contactForm.reset();
+                    
+                    // Reset button after 5 seconds
+                    setTimeout(() => {
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('from-acid-green', 'to-electric-cyan');
+                        submitBtn.innerHTML = originalBtnContent;
+                        submitBtn.disabled = false;
+                    }, 5000);
+                } else {
+                    throw new Error('Erreur lors de l\'envoi');
+                }
+            } catch (error) {
+                // Error state
+                submitBtn.classList.remove('from-acid-green', 'to-electric-cyan');
+                submitBtn.classList.add('bg-red-500', 'text-white');
+                submitBtn.innerHTML = `<span>Erreur ! Réessayez</span>`;
+                
+                setTimeout(() => {
+                    submitBtn.classList.remove('bg-red-500', 'text-white');
+                    submitBtn.classList.add('from-acid-green', 'to-electric-cyan');
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+    }
 });
