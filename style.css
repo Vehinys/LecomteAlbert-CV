@@ -193,4 +193,23 @@ button:focus-visible {
   .swiper-button-prev-main {
     left: 5px !important;
   }
+
+  /* Portfolio Card Height Fixes */
+  .swiper-slide .glass-panel {
+    height: auto !important;
+    min-height: 550px;
+  }
+
+  .nestedSwiper {
+    height: auto !important;
+    min-height: 250px !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .nestedSwiper .swiper-slide img {
+    height: auto !important;
+    max-height: 250px !important;
+    object-fit: contain !important;
+  }
 }

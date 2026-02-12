@@ -6,8 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const swiper = new Swiper(".mySwiper", {
         loop: true,
         speed: 1000,
+        autoHeight: true, // Enable autoHeight to prevent truncation
+        observer: true,
+        observeParents: true,
         autoplay: {
-            delay: 10000, // 10 seconds as requested
+            delay: 10000,
             disableOnInteraction: false,
         },
         pagination: {
@@ -18,22 +21,45 @@ document.addEventListener('DOMContentLoaded', () => {
             nextEl: ".swiper-button-next-main",
             prevEl: ".swiper-button-prev-main",
         },
-        effect: 'coverflow', // Optional cool effect
+        effect: 'coverflow',
         coverflowEffect: {
-            rotate: 50,
+            rotate: 15, // Reduced rotation for mobile
             stretch: 0,
             depth: 100,
             modifier: 1,
-            slideShadows: false, // Cleaner without shadows on transparent
+            slideShadows: false,
         },
+        breakpoints: {
+            // Adjust effect for mobile
+            320: {
+                coverflowEffect: {
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 0,
+                }
+            },
+            768: {
+                coverflowEffect: {
+                    rotate: 15,
+                    depth: 100,
+                }
+            }
+        },
+        on: {
+            init: function () {
+                this.update();
+            }
+        }
     });
 
     // --- 2. Nested Swipers (Galleries) ---
     const nestedSwipers = document.querySelectorAll('.nestedSwiper');
     nestedSwipers.forEach(swiperElement => {
-        new Swiper(swiperElement, {
+        const nSwiper = new Swiper(swiperElement, {
             loop: true,
-            nested: true, // Crucial for nested inside another swiper
+            nested: true,
+            observer: true,
+            observeParents: true,
             pagination: {
                 el: swiperElement.querySelector(".swiper-pagination"),
                 clickable: true,
@@ -43,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevEl: swiperElement.querySelector(".swiper-button-prev"),
             },
         });
+        setTimeout(() => { nSwiper.update(); }, 500);
     });
 
     // --- 3. Typing Animation ---
