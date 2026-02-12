@@ -20,6 +20,10 @@ body {
   z-index: -50;
   overflow: hidden;
   background: #000000;
+  /* Dynamic Hue Rotation based on scroll */
+  filter: hue-rotate(calc(var(--scroll-progress, 0) * 360deg));
+  will-change: filter;
+  transition: filter 0.1s linear;
 }
 
 .blob {
@@ -174,61 +178,89 @@ button:focus-visible {
 
 /* ==================== SWIPER MOBILE UI FIX ==================== */
 @media (max-width: 768px) {
-    /* Navigation Arrows */
-    .swiper-button-next-main,
-    .swiper-button-prev-main {
-        width: 35px !important;
-        height: 35px !important;
-        background: rgba(0, 0, 0, 0.7) !important;
-    }
+  /* Navigation Arrows */
+  .swiper-button-next-main,
+  .swiper-button-prev-main {
+    width: 35px !important;
+    height: 35px !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+  }
 
-    .swiper-button-next-main i,
-    .swiper-button-prev-main i {
-        font-size: 1.2rem !important;
-    }
+  .swiper-button-next-main i,
+  .swiper-button-prev-main i {
+    font-size: 1.2rem !important;
+  }
 
-    .swiper-button-next-main { right: 5px !important; }
-    .swiper-button-prev-main { left: 5px !important; }
+  .swiper-button-next-main {
+    right: 5px !important;
+  }
+  .swiper-button-prev-main {
+    left: 5px !important;
+  }
 
-    /* 1. Force container height & visibility */
-    .nestedSwiper {
-        height: 250px !important;
-        min-height: 250px !important;
-        width: 100% !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        display: block !important;
-        overflow: hidden !important;
-    }
+  /* 1. Force container height & visibility */
+  .nestedSwiper {
+    height: 250px !important;
+    min-height: 250px !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    display: block !important;
+    overflow: hidden !important;
+  }
 
-    /* 2. Force Image visibility */
-    .nestedSwiper img {
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 100% !important;
-        object-fit: contain !important;
-        display: block !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
+  /* 2. Force Image visibility */
+  .nestedSwiper img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 
-    .nestedSwiper .swiper-wrapper,
-    .nestedSwiper .swiper-slide {
-        height: 100% !important;
-    }
+  .nestedSwiper .swiper-wrapper,
+  .nestedSwiper .swiper-slide {
+    height: 100% !important;
+  }
 
-    /* 3. Unlimited Text Height & Wrapping */
-    .swiper-slide .glass-panel {
-        height: auto !important;
-        min-height: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        padding-bottom: 3rem !important;
-    }
+  /* 3. Unlimited Text Height & Wrapping */
+  .swiper-slide .glass-panel {
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding-bottom: 3rem !important;
+  }
 
-    .swiper-slide .glass-panel h3, 
-    .swiper-slide .glass-panel p {
-        white-space: normal !important;
-        word-wrap: break-word !important;
-        overflow: visible !important;
-    }
+  .swiper-slide .glass-panel h3,
+  .swiper-slide .glass-panel p {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    overflow: visible !important;
+  }
+}
+
+/* ==================== SCROLL ANIMATIONS ==================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered transition delays for grid items */
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
 }
