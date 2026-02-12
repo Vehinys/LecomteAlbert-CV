@@ -1,6 +1,7 @@
 /* ==================== SCRIPT.JS ==================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM fully loaded and parsed. Initializing Swipers...");
     
     // --- 1. Swiper Initialization (Main Slider) ---
     const swiper = new Swiper(".mySwiper", {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         breakpoints: {
             // Adjust effect for mobile
             320: {
+                effect: 'slide', // Switch to simple slide on mobile
                 coverflowEffect: {
                     rotate: 0,
                     stretch: 0,
@@ -39,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             },
             768: {
+                effect: 'coverflow',
                 coverflowEffect: {
                     rotate: 15,
                     depth: 100,
@@ -69,7 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 prevEl: swiperElement.querySelector(".swiper-button-prev"),
             },
         });
-        setTimeout(() => { nSwiper.update(); }, 500);
+        setTimeout(() => { 
+            nSwiper.update(); 
+            console.log("Nested Swiper updated:", swiperElement);
+        }, 1000);
     });
 
     // --- 3. Typing Animation ---

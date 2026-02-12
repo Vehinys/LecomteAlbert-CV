@@ -174,42 +174,61 @@ button:focus-visible {
 
 /* ==================== SWIPER MOBILE UI FIX ==================== */
 @media (max-width: 768px) {
-  .swiper-button-next-main,
-  .swiper-button-prev-main {
-    width: 35px !important;
-    height: 35px !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-  }
+    /* Navigation Arrows */
+    .swiper-button-next-main,
+    .swiper-button-prev-main {
+        width: 35px !important;
+        height: 35px !important;
+        background: rgba(0, 0, 0, 0.7) !important;
+    }
 
-  .swiper-button-next-main i,
-  .swiper-button-prev-main i {
-    font-size: 1.2rem !important;
-  }
+    .swiper-button-next-main i,
+    .swiper-button-prev-main i {
+        font-size: 1.2rem !important;
+    }
 
-  /* Prevent text overlap by pushing arrows slightly out or making them more subtle */
-  .swiper-button-next-main {
-    right: 5px !important;
-  }
-  .swiper-button-prev-main {
-    left: 5px !important;
-  }
+    .swiper-button-next-main { right: 5px !important; }
+    .swiper-button-prev-main { left: 5px !important; }
 
-  /* Portfolio Card Height Fixes */
-  .swiper-slide .glass-panel {
-    height: auto !important;
-    min-height: 550px;
-  }
+    /* 1. Force container height & visibility */
+    .nestedSwiper {
+        height: 250px !important;
+        min-height: 250px !important;
+        width: 100% !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        display: block !important;
+        overflow: hidden !important;
+    }
 
-  .nestedSwiper {
-    height: auto !important;
-    min-height: 250px !important;
-    width: 100% !important;
-    overflow: visible !important;
-  }
+    /* 2. Force Image visibility */
+    .nestedSwiper img {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
 
-  .nestedSwiper .swiper-slide img {
-    height: auto !important;
-    max-height: 250px !important;
-    object-fit: contain !important;
-  }
+    .nestedSwiper .swiper-wrapper,
+    .nestedSwiper .swiper-slide {
+        height: 100% !important;
+    }
+
+    /* 3. Unlimited Text Height & Wrapping */
+    .glass-panel {
+        height: auto !important;
+        min-height: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .glass-panel h3, 
+    .glass-panel p {
+        white-space: normal !important;
+        word-wrap: break-word !important;
+        overflow: visible !important;
+    }
 }
