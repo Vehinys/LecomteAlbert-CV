@@ -217,7 +217,7 @@ button:focus-visible {
     }
 
     /* 3. Unlimited Text Height & Wrapping */
-    .glass-panel {
+    .swiper-slide .glass-panel {
         height: auto !important;
         min-height: 0 !important;
         display: flex !important;
@@ -225,8 +225,8 @@ button:focus-visible {
         padding-bottom: 3rem !important;
     }
 
-    .glass-panel h3, 
-    .glass-panel p {
+    .swiper-slide .glass-panel h3, 
+    .swiper-slide .glass-panel p {
         white-space: normal !important;
         word-wrap: break-word !important;
         overflow: visible !important;
